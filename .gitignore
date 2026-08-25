@@ -1,0 +1,15 @@
+.env
+venv/
+__pycache__/
+*.pyc
+secret.json
+venv/
+.env
+secret.json
+__pycache__/
+*.pyc
+
+data/gold/
+data/silver/
+
+.aws/
