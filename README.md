@@ -8,11 +8,9 @@ This project processes raw e-commerce data through a **Medallion Architecture (B
 
 ## 🚀 Live Demo
 
-🔗 Live Dashboard: Open Live Dashboard →
+🔗 **Live Dashboard:** [Open Live Dashboard →](https://ecommerce-cloud-data-platform-m3crciqfx8ohbabpbwz6e4.streamlit.app/)
 
-🔗 GitHub Repository: View GitHub Repository →
-
----
+🔗 **GitHub Repository:** [View GitHub Repository →](https://github.com/Anuj857/ecommerce-cloud-data-platform)
 
 # 📌 Project Overview
 
