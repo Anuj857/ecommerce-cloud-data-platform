@@ -511,11 +511,13 @@ if page == "🏠 Executive Overview":
         if find_col(customers, ["customer_id"])
         else 0
     )
-    item_count = (
-        items[find_col(items, ["order_item_id"])].nunique()
-        if find_col(items, ["order_item_id"])
-        else len(items)
-    )
+    # Count physical order-item records, not columns or aggregated metrics.
+    # fact_order_items contains one row per order item.
+    item_id_col = find_col(items, ["order_item_id", "item_id"])
+    if item_id_col:
+        item_count = items[item_id_col].dropna().astype(str).nunique()
+    else:
+        item_count = len(items)
     aov = revenue / order_count if order_count else 0
 
     c1, c2, c3, c4, c5 = st.columns(5)
@@ -529,6 +531,16 @@ if page == "🏠 Executive Overview":
         kpi("Order Items", number(item_count), "Items sold")
     with c5:
         kpi("Average Order", money(aov), "Revenue / order")
+
+    # Data-quality note: this project uses the Gold fact table directly.
+    if item_count and item_count < order_count:
+        st.caption(
+            f"ℹ️ {item_count:,} order-item records across {order_count:,} orders in the Gold layer."
+        )
+    else:
+        st.caption(
+            f"ℹ️ {item_count:,} order-item records loaded from fact_order_items."
+        )
 
     st.divider()
 
